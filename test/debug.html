@@ -2,6 +2,23 @@
     <head>
         <link rel="stylesheet" href="/test/debug.css" />
         <script type="module" src="/source/main.js"></script>
+        <script type="module">
+            const quantumCanvas = document.querySelector('quantum-canvas');
+            quantumCanvas.load('/test/resources/kal16.png').then(image => {
+                quantumCanvas.resize();
+                quantumCanvas.render({
+                    image,
+                    sx: 0,
+                    sy: 0,
+                    sw: 16,
+                    sh: 16,
+                    dx: 100,
+                    dy: 100,
+                    dw: 16,
+                    dh: 16
+                });
+            });
+        </script>
     </head>
     <body>
         <quantum-canvas></quantum-canvas>

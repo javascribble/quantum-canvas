@@ -1,8 +1,8 @@
 import { template } from '../../references/quantum.js';
 
-const markup = '<canvas></canvas>';
+const html = '<canvas></canvas>';
 
-const style = `
+const css = `
     canvas {
         display: block;
         width: 100%;
@@ -10,4 +10,4 @@ const style = `
     }
 `;
 
-export const canvas = template(markup, style);
+export const canvas = template(html, css);
