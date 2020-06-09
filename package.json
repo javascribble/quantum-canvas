@@ -1,5 +1,5 @@
 {
-    "name": "@javascribble/quantum-element",
+    "name": "@javascribble/quantum-canvas",
     "description": "",
     "version": "0.0.0",
     "license": "MIT",
@@ -13,20 +13,20 @@
         "postversion": "npm publish --access public"
     },
     "main": "./source/main.js",
-    "homepage": "https://github.com/javascribble/quantum-element#readme",
+    "homepage": "https://github.com/javascribble/quantum-canvas#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/javascribble/quantum-element.git"
+        "url": "git+https://github.com/javascribble/quantum-canvas.git"
     },
     "bugs": {
-        "url": "https://github.com/javascribble/quantum-element/issues"
+        "url": "https://github.com/javascribble/quantum-canvas/issues"
     },
     "keywords": [
         "web",
         "components"
     ],
     "files": [
-		"references",
+        "references",
         "source"
     ]
 }
