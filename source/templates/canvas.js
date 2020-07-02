@@ -1,6 +1,6 @@
 import { template } from '../../references/quantum.js';
 
-const html = '<canvas></canvas>';
+const html = '<canvas><slot></slot></canvas>';
 
 const css = `
     canvas {

@@ -1,28 +1,24 @@
-import { Quantum, define, query } from '../../references/quantum.js';
+import { Quantum, define, animate } from '../../references/quantum.js';
 import { resizeCanvas, getContext } from '../output/canvas.js';
-import { loadImage } from '../network/loader.js';
 import { canvas } from '../templates/canvas.js';
 
 export class Canvas extends Quantum {
     constructor() {
         super(canvas);
+    }
 
-        this.canvas = query(this.shadowRoot, 'canvas');
+    initializeShadowCallback(shadow) {
+        super.initializeShadowCallback(shadow);
+
+        this.canvas = shadow.querySelector('canvas');
         this.context = getContext(this.canvas);
-    }
 
-    load(resource) {
-        return loadImage(resource);
-    }
-
-    render(renderable) {
-        // TODO: Support more primitives (animation, text, rectangle, circle, arc, line).
-        const { image, sx, sy, sw, sh, dx, dy, dw, dh } = renderable;
-        this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
-    }
-
-    resize() {
         resizeCanvas(this.canvas);
+        for (const image of shadow.querySelector('slot').assignedElements()) {
+            //const { sx, sy, sw, sh, dx, dy, dw, dh } = image;
+            //this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
+            this.context.drawImage(image, 0, 0, 16, 16, 100, 100, 16, 16);
+        }
     }
 }
 
