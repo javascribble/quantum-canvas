@@ -19,5 +19,3 @@ export const resizeCanvas = (canvas, scale = devicePixelRatio) => {
 
     return false;
 };
-
-export const getContext = (canvas) => canvas.getContext('2d', canvasOptions);
