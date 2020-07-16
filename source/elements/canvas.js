@@ -1,5 +1,6 @@
-import { Component, animate } from '../../references/quantum.js';
+import { Component, template, animate } from '../../references/quantum.js';
 import { resizeCanvas, canvasOptions } from '../utilities/canvas.js';
+import html from '../templates/canvas.js';
 
 export class Canvas extends Component {
     #slot;
@@ -22,7 +23,7 @@ export class Canvas extends Component {
         }
     }
 
-    static template = document.querySelector('#quantum-canvas');
+    static template = template(html);
 }
 
 customElements.define('quantum-canvas', Canvas);
