@@ -1,8 +1,7 @@
-import { Component, template, animate } from '../../references/quantum.js';
 import { resizeCanvas, canvasOptions } from '../utilities/canvas.js';
 import html from '../templates/canvas.js';
 
-export class Canvas extends Component {
+export class Canvas extends quantum.Component {
     #slot;
     #canvas;
     #context;
@@ -23,7 +22,7 @@ export class Canvas extends Component {
         }
     }
 
-    static template = template(html);
+    static template = quantum.template(html);
 }
 
-customElements.define('quantum-canvas', Canvas);
+quantum.define('quantum-canvas', Canvas);
