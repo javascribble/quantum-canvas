@@ -6,7 +6,5 @@ export default `
         height: 100%;
     }
 </style>
-<canvas>
-    <slot></slot>
-</canvas>
+<canvas></canvas>
 `;
