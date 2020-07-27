@@ -21,8 +21,8 @@ loadImage('/test/resources/kal256.png').then(image => {
                 sh: 256,
                 dx: 100,
                 dy: 100,
-                dw: 200,
-                dh: 200
+                dw: 256,
+                dh: 256
             }
         ]
     });

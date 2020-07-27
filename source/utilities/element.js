@@ -1,9 +1,14 @@
-export const resize = (observed, observer) => {
-    const canvas = observed[0].target;
-    const scaledWidth = canvas.clientWidth * devicePixelRatio;
-    const scaledHeight = canvas.clientHeight * devicePixelRatio;
-    if (canvas.width !== scaledWidth || canvas.height !== scaledHeight) {
-        canvas.width = scaledWidth;
-        canvas.height = scaledHeight;
+export const resize = element => {
+    const scaledWidth = element.clientWidth * devicePixelRatio;
+    const scaledHeight = element.clientHeight * devicePixelRatio;
+    if (element.width !== scaledWidth || element.height !== scaledHeight) {
+        element.width = scaledWidth;
+        element.height = scaledHeight;
     }
 };
+
+export const resizeObserver = new ResizeObserver((observed, observer) => {
+    for (const { target } of observed) {
+        resize(target);
+    }
+});

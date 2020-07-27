@@ -1,5 +1,5 @@
 import { canvasOptions } from '../constants/options.js';
-import { resize } from '../utilities/element.js';
+import { resize, resizeObserver } from '../utilities/element.js';
 import html from '../templates/canvas.js';
 
 export class Canvas extends quantum.Component {
@@ -10,9 +10,8 @@ export class Canvas extends quantum.Component {
 
         const canvas = this.shadowRoot.querySelector('canvas');
         this.#context = canvas.getContext('2d', canvasOptions);
-
-        const resizeObserver = new ResizeObserver(resize);
-        resizeObserver.observe(canvas);
+        resizeObserver.observe(canvas); // asyncronous
+        resize(canvas);
     }
 
     static template = quantum.template(html);
