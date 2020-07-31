@@ -11,21 +11,19 @@ const loadImage = (resource) => {
 
 loadImage('/test/resources/kal256.png').then(image => {
     const canvas = document.querySelector('quantum-canvas');
-    canvas.render({
-        images: [
-            {
-                image,
-                sx: 0,
-                sy: 0,
-                sw: 256,
-                sh: 256,
-                dx: 100,
-                dy: 100,
-                dw: 256,
-                dh: 256
-            }
-        ]
-    });
+    canvas.render([
+        {
+            image,
+            sx: 0,
+            sy: 0,
+            sw: 256,
+            sh: 256,
+            dx: 100,
+            dy: 100,
+            dw: 256,
+            dh: 256
+        }
+    ]);
 });
 
 document.body.style.visibility = 'visible';

@@ -16,8 +16,8 @@ export class Canvas extends quantum.Component {
 
     static template = quantum.template(html);
 
-    render(state) {
-        for (const { image, sx, sy, sw, sh, dx, dy, dw, dh } of state.images) {
+    drawImages(images) {
+        for (const { image, sx, sy, sw, sh, dx, dy, dw, dh } of images) {
             this.#context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
         }
     }
