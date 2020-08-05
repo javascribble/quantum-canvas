@@ -9,7 +9,7 @@ export class Canvas extends quantum.Component {
         super();
 
         const canvas = this.shadowRoot.querySelector('canvas');
-        this.#context = canvas.getContext('2d', canvasOptions);
+        this.context = canvas.getContext('2d', canvasOptions);
         resizeObserver.observe(canvas); // asyncronous
         resize(canvas);
     }
