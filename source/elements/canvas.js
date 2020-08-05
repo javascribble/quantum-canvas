@@ -3,7 +3,7 @@ import { resize, resizeObserver } from '../utilities/element.js';
 import html from '../templates/canvas.js';
 
 export class Canvas extends quantum.Component {
-    #context;
+    context;
 
     constructor() {
         super();
@@ -16,10 +16,9 @@ export class Canvas extends quantum.Component {
 
     static template = quantum.template(html);
 
-    drawImages(images) {
-        for (const { image, sx, sy, sw, sh, dx, dy, dw, dh } of images) {
-            this.#context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
-        }
+    drawSprite(sprite) {
+        const { image, sx, sy, sw, sh, dx, dy, dw, dh } = sprite;
+        this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     }
 }
 
