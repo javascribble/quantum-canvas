@@ -25,7 +25,7 @@ export class Canvas extends quantum.Component {
         broker.subscribe('drawSprite', this.drawSprite.bind(this));
     }
 
-    configure(configuration) {
+    configure(options) {
 
     }
 }
