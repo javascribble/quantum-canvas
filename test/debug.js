@@ -1,9 +1,12 @@
 import '/node_modules/@javascribble/quantum/source/main.js';
-import '/source/main.js';
+import { canvasBrokerAdapter } from '/source/main.js';
 
 const canvas = document.querySelector('quantum-canvas');
 const image = document.querySelector('img');
-canvas.drawSprite({
+
+const configuration = {};
+
+const sprite = {
     image,
     sx: 0,
     sy: 0,
@@ -13,6 +16,18 @@ canvas.drawSprite({
     dy: 100,
     dw: 256,
     dh: 256
-});
+}
+
+canvas.drawSprite(sprite);
+
+const sprite2 = {
+    ...sprite,
+    dx: 300,
+    dy: 300
+}
+
+const broker = new quantum.EventBroker();
+canvasBrokerAdapter.adapt(canvas, broker, configuration);
+broker.publish('drawSprite', sprite2);
 
 document.body.style.visibility = 'visible';
