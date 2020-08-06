@@ -20,6 +20,14 @@ export class Canvas extends quantum.Component {
         const { image, sx, sy, sw, sh, dx, dy, dw, dh } = sprite;
         this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     }
+
+    integrate(broker) {
+        broker.subscribe('drawSprite', this.drawSprite.bind(this));
+    }
+
+    load(data) {
+
+    }
 }
 
 quantum.define('quantum-canvas', Canvas);
