@@ -25,7 +25,7 @@ const sprite2 = {
 }
 
 const broker = new quantum.EventBroker();
-canvas.integrate(broker);
+canvas.configure({ broker });
 broker.publish('drawSprite', sprite2);
 
 document.body.style.visibility = 'visible';
