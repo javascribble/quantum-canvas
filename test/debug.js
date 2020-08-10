@@ -14,7 +14,7 @@ const sprite = {
     dy: 100,
     dw: 256,
     dh: 256
-}
+};
 
 canvas.drawSprite(sprite);
 
@@ -22,10 +22,10 @@ const sprite2 = {
     ...sprite,
     dx: 300,
     dy: 300
-}
+};
 
-const broker = new quantum.EventBroker();
-canvas.configure({ broker });
-broker.publish('drawSprite', sprite2);
+const api = {};
+canvas.integrate(api);
+api.drawSprite(sprite2);
 
 document.body.style.visibility = 'visible';

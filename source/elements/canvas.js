@@ -21,9 +21,8 @@ export class Canvas extends quantum.Component {
         this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     }
 
-    configure(state) {
-        const { broker } = state;
-        broker.subscribe('drawSprite', this.drawSprite.bind(this));
+    integrate(api) {
+        api.drawSprite = this.drawSprite.bind(this);
     }
 }
 
