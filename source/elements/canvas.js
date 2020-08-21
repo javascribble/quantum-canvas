@@ -24,14 +24,8 @@ export class Canvas extends quantum.Component {
 
     integrate(api) {
         api.drawSprite = this.drawSprite.bind(this);
-        api.viewport = {
-            get width() {
-                return this.#canvas.width;
-            },
-            get height() {
-                return this.#canvas.height;
-            }
-        }
+        api.viewportWidth = () => this.#canvas.width;
+        api.viewportHeight = () => this.#canvas.height;
     }
 }
 
