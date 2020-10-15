@@ -1,5 +1,5 @@
-import '/node_modules/@javascribble/quantum/source/main.js';
-import '/source/main.js';
+import '/node_modules/@javascribble/quantum/source/global.js';
+import '/source/global.js';
 
 const canvas = document.querySelector('quantum-canvas');
 const image = document.querySelector('img');
