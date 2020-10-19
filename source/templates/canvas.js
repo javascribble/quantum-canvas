@@ -1,7 +1,12 @@
 export default `
 <style>
-    canvas {
+    :host {
         display: block;
+        height: 100%;
+    }
+
+    canvas {
+        width: 100%;
         height: 100%;
     }
 </style>

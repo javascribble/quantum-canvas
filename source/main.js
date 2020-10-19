@@ -1,2 +1,3 @@
 export * from './elements/canvas.js';
+export * from './plugins/grid.js';
 export * from './plugins/sprite.js';

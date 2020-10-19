@@ -8,5 +8,5 @@ Canvas.prototype.drawSprite = function (sprite) {
 const next = Canvas.prototype.integrate;
 Canvas.prototype.integrate = function (api) {
     api.drawSprite = this.drawSprite.bind(this);
-    next?.(api);
+    next?.call(this, api);
 };
