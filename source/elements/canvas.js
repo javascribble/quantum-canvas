@@ -3,29 +3,29 @@ import { resize, resizeObserver } from '../utilities/element.js';
 import html from '../templates/canvas.js';
 
 export class Canvas extends quantum.Component {
-    #canvas;
-    #context;
+    layers = [];
+    layer = 0;
 
     constructor() {
         super();
 
-        this.#canvas = this.shadowRoot.querySelector('canvas');
-        this.#context = this.#canvas.getContext('2d', canvasOptions);
-        resizeObserver.observe(this.#canvas); // asyncronous
-        resize(this.#canvas);
+        const canvas = this.shadowRoot.querySelector('canvas');
+        const context = canvas.getContext('2d', canvasOptions);
+        resizeObserver.observe(canvas); // asyncronous
+        resize(canvas);
+
+        this.layers.push({
+            canvas,
+            context
+        });
+
+        // TODO: Add/remove layers.
     }
 
     static template = quantum.template(html);
 
-    drawSprite(sprite) {
-        const { image, sx, sy, sw, sh, dx, dy, dw, dh } = sprite;
-        this.#context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
-    }
-
-    integrate(api) {
-        api.drawSprite = this.drawSprite.bind(this);
-        api.viewportWidth = () => this.#canvas.width;
-        api.viewportHeight = () => this.#canvas.height;
+    get active() {
+        return this.layers[this.layer];
     }
 }
 
