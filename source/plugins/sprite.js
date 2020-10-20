@@ -1,7 +1,7 @@
 import { Canvas } from '../elements/canvas.js';
 
-Canvas.prototype.loadSprite = function (sprite, images) {
-    return { ...sprite, image: images[sprite.image] };
+Canvas.prototype.loadSprite = async function (sprite, loadResource) {
+    return { ...sprite, image: await loadResource(sprite.image) };
 };
 
 Canvas.prototype.drawSprite = function (sprite) {
@@ -11,6 +11,11 @@ Canvas.prototype.drawSprite = function (sprite) {
 
 const next = Canvas.prototype.integrate;
 Canvas.prototype.integrate = function (api) {
-    api.drawSprite = this.drawSprite.bind(this);
+    const { options, loadResource } = api;
+
+    const sprites = new Map();
+    api.loadSprite = async index => sprites.set(index, await this.loadSprite.call(this, options.sprites[index], loadResource))
+    api.drawSprite = index => this.drawSprite.call(this, sprites.get(index));
+
     next?.call(this, api);
 };
