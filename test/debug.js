@@ -2,30 +2,17 @@ import '/node_modules/@javascribble/quantum/source/global.js';
 import '/source/global.js';
 
 const canvas = document.querySelector('quantum-canvas');
-const image = document.querySelector('img');
+const images = document.querySelectorAll('img');
+fetch('/test/debug.json').then(response => response.json()).then(options => {
+    canvas.integrate(options);
+    const { maps, sprites } = options;
 
-const sprite = {
-    image,
-    sx: 0,
-    sy: 0,
-    sw: 256,
-    sh: 256,
-    dx: 100,
-    dy: 100,
-    dw: 256,
-    dh: 256
-};
+    const map = maps[0];
+    const tiles = canvas.loadTiles(map, images);
+    canvas.drawTiles(map, tiles);
 
-canvas.drawSprite(sprite);
+    const sprite = canvas.loadSprite(sprites[0], images);
+    canvas.drawSprite(sprite);
 
-const sprite2 = {
-    ...sprite,
-    dx: 300,
-    dy: 300
-};
-
-const api = {};
-canvas.integrate(api);
-api.drawSprite(sprite2);
-
-document.body.style.visibility = 'visible';
+    document.body.style.visibility = 'visible';
+});
