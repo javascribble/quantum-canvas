@@ -1,8 +1,8 @@
 import { Canvas } from '../elements/canvas.js';
 
-Canvas.prototype.loadMap = async function (map, loadResource) {
+Canvas.prototype.loadMap = async function (options, loadResource) {
     const tiles = [];
-    const { tileWidth, tileHeight, tileSets } = map;
+    const { tileWidth, tileHeight, tileSets } = options;
     for (const { tileCount, columns, image } of tileSets) {
         const resource = await loadResource(image);
         for (let count = 0; count < tileCount; count++) {
@@ -21,11 +21,11 @@ Canvas.prototype.loadMap = async function (map, loadResource) {
         }
     }
 
-    return tiles;
+    return { ...options, tiles };
 };
 
-Canvas.prototype.drawMap = function (map, tiles) {
-    const { mapWidth, mapHeight, tileWidth, tileHeight } = map;
+Canvas.prototype.drawMap = function (map) {
+    const { mapWidth, mapHeight, tileWidth, tileHeight, tiles } = map;
     for (const { data } of map.layers) {
         for (let row = 0; row < mapHeight; row++) {
             for (let column = 0; column < mapWidth; column++) {
@@ -41,10 +41,7 @@ Canvas.prototype.drawMap = function (map, tiles) {
 const next = Canvas.prototype.integrate;
 Canvas.prototype.integrate = function (api) {
     const { options, loadResource } = api;
-
-    const tiles = new Map();
-    api.loadMap = async index => tiles.set(index, await this.loadMap.call(this, options.maps[index], loadResource));
-    api.drawMap = index => this.drawMap.call(this, options.maps[index], tiles.get(index));
-
+    api.loadMap = async index => await this.loadMap.call(this, options.maps[index], loadResource);
+    api.drawMap = this.drawMap.bind(this);
     next?.call(this, api);
 };
