@@ -7,7 +7,7 @@ export const drawSprite = (sprite, context) => {
     context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
 };
 
-export const loadMap = async (options, loadResource) => {
+export const loadTiles = async (options, loadResource) => {
     const tiles = [];
     const { tileWidth, tileHeight, tileSets } = options;
     for (const { tileCount, columns, image } of tileSets) {
@@ -31,7 +31,7 @@ export const loadMap = async (options, loadResource) => {
     return { ...options, tiles };
 };
 
-export const drawMap = (options, drawSprite) => {
+export const drawTiles = (options, drawSprite) => {
     const { mapWidth, mapHeight, tileWidth, tileHeight, tiles } = options;
     for (const { data } of options.layers) {
         for (let row = 0; row < mapHeight; row++) {
