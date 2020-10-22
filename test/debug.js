@@ -8,8 +8,11 @@ fetch('/test/debug.json').then(response => response.json()).then(options => {
     canvas.integrate(api);
 
     Promise.all([api.loadMap(0), api.loadSprite(0)]).then(state => {
-        api.drawMap(state[0]);
-        api.drawSprite(state[1]);
+        quantum.animate(() => {
+            api.drawMap(state[0]);
+            api.drawSprite(state[1]);
+            return true;
+        });
 
         document.body.style.visibility = 'visible';
     });
