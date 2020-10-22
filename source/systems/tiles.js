@@ -5,7 +5,7 @@ Canvas.prototype.integrate = function (api) {
     api.systems?.add({
         component: 'tiles',
         add: async entity => {
-            const { broker, drawTiles, drawSprite } = api;
+            const { broker, loadTiles, drawTiles, loadSprite, drawSprite } = api;
 
             const tiles = await loadTiles(0);
             const sprite = await loadSprite(0);
