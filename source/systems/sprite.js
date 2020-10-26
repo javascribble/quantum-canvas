@@ -1,16 +1,30 @@
-import { Canvas } from '../elements/canvas.js';
+export const createSpriteSystem = api => {
+    const canvas = {
+        layers: [
+            {
+                draws: [
+                    {
+                        type: 'sprite',
+                        sprites: []
+                    }
+                ]
+            }
+        ]
+    };
 
-const next = Canvas.prototype.integrate;
-Canvas.prototype.integrate = function (api) {
-    api.systems?.add({
+    // TODO: Support canvas layers and multiple draws;
+    const sprites = canvas.layers[0].draws[0].sprites;
+
+    return {
         component: 'sprite',
-        add: async entity => {
-
+        add: entity => {
+            sprites.push(entity.sprite);
+        },
+        update: (delta, elapsed) => {
+            sprites.forEach(api.drawSprite);
         },
         delete: entity => {
-
+            sprites.remove(entity.sprite);
         }
-    });
-
-    next?.call(this, api);
+    };
 };

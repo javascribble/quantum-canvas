@@ -1,5 +1,6 @@
-import { canvasOptions } from '../constants/options.js';
-import { resize, resizeObserver } from '../utilities/element.js';
+
+
+import { createCanvasContext, deleteCanvasContext } from '../utilities/canvas.js';
 import html from '../templates/canvas.js';
 
 export class Canvas extends quantum.Component {
@@ -9,23 +10,31 @@ export class Canvas extends quantum.Component {
     constructor() {
         super();
 
-        const canvas = this.shadowRoot.querySelector('canvas');
-        const context = canvas.getContext('2d', canvasOptions);
-        resizeObserver.observe(canvas); // asyncronous
-        resize(canvas);
-
-        this.layers.push({
-            canvas,
-            context
-        });
-
-        // TODO: Add/remove layers.
+        this.insertCanvas();
     }
 
     static template = quantum.template(html);
 
     get active() {
         return this.layers[this.layer];
+    }
+
+    insertCanvas(index = 0, options) {
+        this.layers.splice(index, 0, createCanvasContext(this.shadowRoot, options));
+    }
+
+    removeCanvas(index = 0) {
+        deleteCanvasContext(this.layers.splice(index, 1)[0]);
+    }
+
+    integrate(api) {
+        const { options } = api;
+        if (options.canvas) {
+            // TODO: Add options.
+        }
+
+        api.insertCanvas = this.insertCanvas.bind(this);
+        api.removeCanvas = this.removeCanvas.bind(this);
     }
 }
 
