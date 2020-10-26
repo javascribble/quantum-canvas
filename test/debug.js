@@ -14,17 +14,15 @@ fetch('/test/debug.json').then(response => response.json()).then(options => {
         return true;
     });
 
-    const spriteMap = api.createSpriteMap(0);
-    const spriteView = api.createSpriteView(0);
-
-    spriteMap.map(sprite => system.add({ sprite }));
-    system.add({ sprite: spriteView });
+    const { entities } = options;
+    entities.map(system.add);
 
     const animationLength = 3000;
+    const character = entities[1].sprite.drawable;
     quantum.animate((delta, elapsed) => {
         const radians = elapsed / animationLength * Math.PI * 2;
-        spriteView.dx = Math.sin(radians) * 50 + 50;
-        spriteView.dy = Math.cos(radians) * 50 + 50;
+        character.dx = Math.sin(radians) * 50 + 50;
+        character.dy = Math.cos(radians) * 50 + 50;
         return true;
     });
 

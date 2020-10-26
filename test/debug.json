@@ -1,4 +1,18 @@
 {
+    "entities": [
+        {
+            "sprite": {
+                "type": 1,
+                "resource": 0
+            }
+        },
+        {
+            "sprite": {
+                "type": 0,
+                "resource": 0
+            }
+        }
+    ],
     "sprites": [
         {
             "image": 0,

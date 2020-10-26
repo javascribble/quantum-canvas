@@ -1,5 +1,3 @@
-
-
 import { createCanvasContext, deleteCanvasContext } from '../utilities/canvas.js';
 import html from '../templates/canvas.js';
 
@@ -15,10 +13,6 @@ export class Canvas extends quantum.Component {
 
     static template = quantum.template(html);
 
-    get active() {
-        return this.layers[this.layer];
-    }
-
     insertCanvas(index = 0, options) {
         this.layers.splice(index, 0, createCanvasContext(this.shadowRoot, options));
     }
@@ -28,11 +22,6 @@ export class Canvas extends quantum.Component {
     }
 
     integrate(api) {
-        const { options } = api;
-        if (options.canvas) {
-            // TODO: Add options.
-        }
-
         api.insertCanvas = this.insertCanvas.bind(this);
         api.removeCanvas = this.removeCanvas.bind(this);
     }
