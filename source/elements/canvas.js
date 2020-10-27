@@ -1,29 +1,34 @@
 import { createCanvasContext, deleteCanvasContext } from '../utilities/canvas.js';
+import { draw } from '../utilities/drawing.js';
 import html from '../templates/canvas.js';
 
 export class Canvas extends quantum.Component {
     layers = [];
-    layer = 0;
 
     constructor() {
         super();
 
-        this.insertCanvas();
+        this.insertLayer();
     }
 
     static template = quantum.template(html);
 
-    insertCanvas(index = 0, options) {
+    insertLayer(index = 0, options) {
         this.layers.splice(index, 0, createCanvasContext(this.shadowRoot, options));
     }
 
-    removeCanvas(index = 0) {
+    removeLayer(index = 0) {
         deleteCanvasContext(this.layers.splice(index, 1)[0]);
     }
 
-    integrate(api) {
-        api.insertCanvas = this.insertCanvas.bind(this);
-        api.removeCanvas = this.removeCanvas.bind(this);
+    update(delta, elapsed) {
+        for (const layer of this.layers) {
+            if (layer.draw) {
+                for (const drawable of layer.drawables) {
+                    draw(drawable, layer.context);
+                }
+            }
+        }
     }
 }
 

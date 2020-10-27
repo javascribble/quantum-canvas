@@ -1,5 +1,5 @@
 import { resize, resizeObserver } from '../utilities/element.js';
-import { canvasOptions } from '../constants/options.js';
+import { canvasOptions } from '../constants/canvas.js';
 
 export const createCanvasContext = (parent, options) => {
     const canvas = document.createElement('canvas');
@@ -8,7 +8,7 @@ export const createCanvasContext = (parent, options) => {
     resize(canvas);
 
     const context = canvas.getContext('2d', { ...canvasOptions, ...options });
-    return { canvas, context };
+    return { canvas, context, drawables: [], draw: true };
 };
 
 export const deleteCanvasContext = canvasContext => {
