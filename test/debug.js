@@ -8,14 +8,12 @@ fetch('/test/debug.json').then(response => response.json()).then(options => {
     const api = { options, systems: new Set(), resources: images };
     canvas.integrate(api);
 
-    const system = Array.from(api.systems)[0];
+    const { entities } = options;
+    entities.map(Array.from(api.systems)[0].add);
     quantum.animate((delta, elapsed) => {
-        system.update(delta, elapsed);
+        entities.forEach(entity => entity.sprite.draw());
         return true;
     });
-
-    const { entities } = options;
-    entities.map(system.add);
 
     const animationLength = 3000;
     const character = entities[1].sprite.drawable;
