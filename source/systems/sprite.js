@@ -18,8 +18,6 @@ export const createSpriteSystem = (canvas, api) => {
                     sprite.draw = () => sprite.drawable.map(drawable => canvas.drawImage(drawable));
                     break;
             };
-
-            entities.push(entity);
         },
         delete: entity => {
             const { sprite } = entity;

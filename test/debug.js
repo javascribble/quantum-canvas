@@ -10,10 +10,6 @@ fetch('/test/debug.json').then(response => response.json()).then(options => {
 
     const { entities } = options;
     entities.map(Array.from(api.systems)[0].add);
-    quantum.animate((delta, elapsed) => {
-        entities.forEach(entity => entity.sprite.draw());
-        return true;
-    });
 
     const animationLength = 3000;
     const character = entities[1].sprite.drawable;
@@ -21,6 +17,8 @@ fetch('/test/debug.json').then(response => response.json()).then(options => {
         const radians = elapsed / animationLength * Math.PI * 2;
         character.dx = Math.sin(radians) * 50 + 50;
         character.dy = Math.cos(radians) * 50 + 50;
+
+        entities.forEach(entity => entity.sprite.draw());
         return true;
     });
 
