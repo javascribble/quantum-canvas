@@ -7,8 +7,8 @@ Canvas.prototype.drawSprite = function (sprite) {
 };
 
 const next = Canvas.prototype.integrate;
-Canvas.prototype.integrate = function (api) {
+Canvas.prototype.integrate = async function (api) {
     api.drawSprite = this.drawSprite.bind(this);
     api.systems?.add(createSpriteSystem(api));
-    next?.call(this, api);
+    await next?.call(this, api);
 };
