@@ -7,16 +7,18 @@ const images = document.querySelectorAll('img');
 fetch('/test/debug.json').then(response => response.json()).then(options => {
     const api = { options, systems: new Set(), resources: images };
     canvas.integrate(api);
+
+    const system = Array.from(api.systems)[0];
     quantum.animate((delta, elapsed) => {
-        canvas.update(delta, elapsed);
+        system.update(delta, elapsed);
         return true;
     });
 
     const { entities } = options;
-    entities.map(Array.from(api.systems)[0].add);
-    const character = entities[1].sprite.drawable;
+    entities.map(system.add);
 
     const animationLength = 3000;
+    const character = entities[1].sprite.drawable;
     quantum.animate((delta, elapsed) => {
         const radians = elapsed / animationLength * Math.PI * 2;
         character.dx = Math.sin(radians) * 50 + 50;

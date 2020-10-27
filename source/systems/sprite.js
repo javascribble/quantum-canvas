@@ -5,8 +5,6 @@ export const createSpriteSystem = (canvas, api) => {
     const { options, resources } = api;
     const { sprites, spriteViews, spriteMaps } = options;
 
-    // TODO: Support canvas layers and draw types;
-    const drawables = canvas.layers[0].drawables;
     const entities = [];
     return {
         component: 'sprite',
@@ -15,11 +13,9 @@ export const createSpriteSystem = (canvas, api) => {
             switch (sprite.type) {
                 case spriteType.view:
                     sprite.drawable = createSpriteView(sprite.resource, sprites, spriteViews, resources);
-                    drawables.push(sprite.drawable);
                     break;
                 case spriteType.map:
                     sprite.drawable = createSpriteMap(sprite.resource, sprites, spriteMaps, resources);
-                    sprite.drawable.forEach(drawable => drawables.push(drawable));
                     break;
             };
 
@@ -27,7 +23,14 @@ export const createSpriteSystem = (canvas, api) => {
         },
         update: (delta, elapsed) => {
             for (const { sprite } of entities) {
-                // TODO: Update draw layer/order.
+                switch (sprite.type) {
+                    case spriteType.view:
+                        canvas.drawImage(sprite.drawable);
+                        break;
+                    case spriteType.map:
+                        sprite.drawable.map(drawable => canvas.drawImage(drawable));
+                        break;
+                };
             }
         },
         delete: entity => {

@@ -1,34 +1,25 @@
-import { createCanvasContext, deleteCanvasContext } from '../utilities/canvas.js';
-import { draw } from '../utilities/drawing.js';
+import { resize, resizeObserver } from '../utilities/element.js';
+import { canvasOptions } from '../constants/canvas.js';
 import html from '../templates/canvas.js';
 
 export class Canvas extends quantum.Component {
-    layers = [];
+    #context;
 
     constructor() {
         super();
 
-        this.insertLayer();
+        const canvas = this.shadowRoot.querySelector('canvas');
+        resizeObserver.observe(canvas);
+        resize(canvas);
+
+        this.#context = canvas.getContext('2d', canvasOptions);
     }
 
     static template = quantum.template(html);
 
-    insertLayer(index = 0, options) {
-        this.layers.splice(index, 0, createCanvasContext(this.shadowRoot, options));
-    }
-
-    removeLayer(index = 0) {
-        deleteCanvasContext(this.layers.splice(index, 1)[0]);
-    }
-
-    update(delta, elapsed) {
-        for (const layer of this.layers) {
-            if (layer.draw) {
-                for (const drawable of layer.drawables) {
-                    draw(drawable, layer.context);
-                }
-            }
-        }
+    drawImage(drawable) {
+        const { image, sx, sy, sw, sh, dx, dy, dw, dh } = drawable;
+        this.#context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     }
 }
 

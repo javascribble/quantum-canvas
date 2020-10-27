@@ -8,19 +8,16 @@ export const createSpriteView = (view, sprites, spriteViews, resources) => {
 
 export const createSpriteMap = (map, sprites, spriteMaps, resources) => {
     const spriteMap = spriteMaps[map];
-    const tiles = [];
-    for (let i = 0; i < spriteMap.sprites.length; i++) {
-        const sprite = sprites[spriteMap.sprites[i]];
-        tiles.push({
+    return spriteMap.sprites.map((resource, index) => {
+        const sprite = sprites[resource];
+        return {
             ...sprite,
             type: drawType.image,
             image: resources[sprite.image],
-            dx: spriteMap.width * (i % spriteMap.divisor),
-            dy: spriteMap.height * Math.floor(i / spriteMap.divisor),
+            dx: spriteMap.width * (index % spriteMap.divisor),
+            dy: spriteMap.height * Math.floor(index / spriteMap.divisor),
             dw: spriteMap.width,
             dh: spriteMap.height
-        });
-    }
-
-    return tiles;
+        };
+    });
 };
