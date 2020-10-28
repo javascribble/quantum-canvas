@@ -5,7 +5,6 @@ export const createSpriteSystem = (canvas, api) => {
     const { options, resources } = api;
     const { sprites, spriteViews, spriteMaps } = options;
     return {
-        component: 'sprite',
         add: entity => {
             const { sprite } = entity;
             switch (sprite.type) {
@@ -18,11 +17,6 @@ export const createSpriteSystem = (canvas, api) => {
                     sprite.draw = () => sprite.drawable.map(drawable => canvas.drawImage(drawable));
                     break;
             };
-        },
-        delete: entity => {
-            const { sprite } = entity;
-            delete sprite.drawable;
-            delete sprite.draw;
         }
     };
 };

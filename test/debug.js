@@ -5,11 +5,11 @@ const canvas = document.querySelector('quantum-canvas');
 const images = document.querySelectorAll('img');
 
 fetch('/test/debug.json').then(response => response.json()).then(options => {
-    const api = { options, systems: new Set(), resources: images };
+    const api = { options, systems: new Map(), resources: images };
     canvas.integrate(api);
 
     const { entities } = options;
-    entities.map(Array.from(api.systems)[0].add);
+    entities.map(api.systems.get('sprite').add);
 
     const animationLength = 3000;
     const character = entities[1].sprite.drawable;

@@ -3,6 +3,6 @@ import { Canvas } from '../elements/canvas.js';
 
 const next = Canvas.prototype.integrate;
 Canvas.prototype.integrate = async function (api) {
-    api.systems?.add(createSpriteSystem(this, api));
+    api.systems.set('sprite', createSpriteSystem(this, api));
     await next?.call(this, api);
 };
