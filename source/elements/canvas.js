@@ -18,6 +18,12 @@ export class Canvas extends quantum.Component {
     static adapter = {};
 
     static template = quantum.template(html);
+
+    adapt(api) {
+        for (const method in Canvas.adapter) {
+            api[method] = Canvas.adapter[method].bind(this);
+        }
+    }
 }
 
 quantum.define('quantum-canvas', Canvas);
