@@ -15,6 +15,8 @@ export class Canvas extends quantum.Component {
         this.context = canvas.getContext('2d', canvasOptions);
     }
 
+    static adapter = {};
+
     static template = quantum.template(html);
 }
 

@@ -1,6 +1,6 @@
 import { Canvas } from '../elements/canvas.js';
 
-Canvas.prototype.importUniformSheet = function (image, sw, sh = sw) {
+function importUniformSheet(image, sw, sh = sw) {
     const sprites = [];
     for (let row = 0; row < image.height / sh; row++) {
         for (let column = 0; column < image.width / sw; column++) {
@@ -9,4 +9,15 @@ Canvas.prototype.importUniformSheet = function (image, sw, sh = sw) {
     }
 
     return sprites;
+}
+
+const prototype = {
+    importUniformSheet
 };
+
+const adapter = {
+    ...prototype
+};
+
+Object.assign(Canvas.prototype, prototype);
+Object.assign(Canvas.adapter, adapter);
