@@ -1,3 +1,4 @@
+import { plugin } from '../import.js';
 import { Canvas } from '../elements/canvas.js';
 
 function importUniformSheet(image, sw, sh = sw) {
@@ -11,13 +12,4 @@ function importUniformSheet(image, sw, sh = sw) {
     return sprites;
 }
 
-const prototype = {
-    importUniformSheet
-};
-
-const adapter = {
-    ...prototype
-};
-
-Object.assign(Canvas.prototype, prototype);
-Object.assign(Canvas.adapter, adapter);
+plugin(Canvas, { importUniformSheet });

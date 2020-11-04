@@ -1,8 +1,9 @@
+import { Plugin, template, define } from '../import.js';
 import { resize, resizeObserver } from '../utilities/element.js';
 import { canvasOptions } from '../constants/canvas.js';
 import html from '../templates/canvas.js';
 
-export class Canvas extends quantum.Component {
+export class Canvas extends Plugin {
     context;
 
     constructor() {
@@ -15,15 +16,12 @@ export class Canvas extends quantum.Component {
         this.context = canvas.getContext('2d', canvasOptions);
     }
 
-    static adapter = {};
-
-    static template = quantum.template(html);
+    static template = template(html);
 
     adapt(api) {
-        for (const method in Canvas.adapter) {
-            api[method] = Canvas.adapter[method].bind(this);
-        }
+        super.adapt(api);
+        api.canvasContext = this.context;
     }
 }
 
-quantum.define('quantum-canvas', Canvas);
+define('quantum-canvas', Canvas);

@@ -1,3 +1,4 @@
+import { plugin } from '../import.js';
 import { Canvas } from '../elements/canvas.js';
 
 function drawSprite(sprite) {
@@ -23,16 +24,9 @@ function createSpriteMap(sprites, data, divisor) {
     return map;
 };
 
-const prototype = {
+plugin(Canvas, {
     drawSprite,
     createSprite,
     createSpriteView,
     createSpriteMap
-};
-
-const adapter = {
-    ...prototype
-};
-
-Object.assign(Canvas.prototype, prototype);
-Object.assign(Canvas.adapter, adapter);
+});
