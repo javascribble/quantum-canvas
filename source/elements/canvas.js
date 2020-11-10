@@ -1,9 +1,9 @@
-import { Plugin, template, define } from '../import.js';
+import { Component, template, define } from '../import.js';
 import { resize, resizeObserver } from '../utilities/element.js';
 import { canvasOptions } from '../constants/canvas.js';
 import html from '../templates/canvas.js';
 
-export class Canvas extends Plugin {
+export class Canvas extends Component {
     context;
 
     constructor() {
@@ -18,9 +18,9 @@ export class Canvas extends Plugin {
 
     static template = template(html);
 
-    adapt(api) {
-        super.adapt(api);
-        api.canvasContext = this.context;
+    drawSprite(sprite) {
+        const { image, sx, sy, sw, sh, dx, dy, dw, dh } = sprite;
+        this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     }
 }
 
