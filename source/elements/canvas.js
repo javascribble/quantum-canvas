@@ -1,4 +1,3 @@
-import { Component, template, define } from '../import.js';
 import { resize, resizeObserver } from '../utilities/element.js';
 import { canvasOptions } from '../constants/canvas.js';
 import html from '../templates/canvas.js';
@@ -22,6 +21,10 @@ export class Canvas extends Component {
         const { image, sx, sy, sw, sh, dx, dy, dw, dh } = sprite;
         this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     }
+
+    adapt(api) {
+        api.drawSprite = this.drawSprite.bind(this);
+    };
 }
 
 define('quantum-canvas', Canvas);

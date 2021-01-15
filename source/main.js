@@ -1,2 +1,3 @@
-export * from './adapters/engine.js';
-export * from './elements/canvas.js';
+import * as canvas from './elements/canvas.js';
+
+Object.assign(window, canvas);
