@@ -2,6 +2,8 @@ import { resize, resizeObserver } from '../utilities/element.js';
 import { canvasOptions } from '../constants/canvas.js';
 import html from '../templates/canvas.js';
 
+const { Component, template, define } = quantum;
+
 export class Canvas extends Component {
     context;
 

@@ -1,3 +1,3 @@
 import * as canvas from './elements/canvas.js';
 
-Object.assign(window, canvas);
+Object.assign(quantum, canvas);
