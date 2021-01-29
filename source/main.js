@@ -1,3 +1,3 @@
-import * as canvas from './elements/canvas.js';
+import { Canvas } from './elements/canvas.js';
 
-Object.assign(quantum, canvas);
+Quantum.Canvas = Canvas;
