@@ -1,6 +1,6 @@
-export const resize = element => {
-    const scaledWidth = element.clientWidth * devicePixelRatio;
-    const scaledHeight = element.clientHeight * devicePixelRatio;
+export const resize = (element, scale = devicePixelRatio) => {
+    const scaledWidth = element.clientWidth * scale;
+    const scaledHeight = element.clientHeight * scale;
     if (element.width !== scaledWidth || element.height !== scaledHeight) {
         element.width = scaledWidth;
         element.height = scaledHeight;
@@ -9,17 +9,6 @@ export const resize = element => {
 
 export const resizeObserver = new ResizeObserver((observed, observer) => {
     for (const { target } of observed) {
-        resize(target);
-
-        target.dispatchEvent(new Event('resize', { bubbles: true, composed: true }));
+        target.dispatchEvent(new Event('resize'));
     }
 });
-
-export const observe = element => {
-    resizeObserver.observe(element);
-    resize(element);
-}
-
-export const unobserve = element => {
-    resizeObserver.unobserve(element);
-}
