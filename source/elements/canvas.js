@@ -15,15 +15,24 @@ export class Canvas extends Quantum {
         this.context = canvas.getContext('2d', canvasOptions);
     }
 
+    drawable(image) {
+        return !!image.source;
+    }
+
     drawImage(image) {
         const { source, sx, sy, sw, sh, dx, dy, dw, dh } = image;
         this.context.drawImage(source, sx, sy, sw, sh, dx, dy, dw, dh);
     }
 
-    drawImageTree(root, branches = 'images') {
-        this.drawImage(root);
+    drawImageTree(root, branches) {
+        if (this.drawable(root)) {
+            this.drawImage(root);
+        }
+
         if (branches in root) {
-            this.drawImageTree(root[branches]);
+            for (const branch of root[branches]) {
+                this.drawImageTree(branch);
+            }
         }
     }
 
