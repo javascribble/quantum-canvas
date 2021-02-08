@@ -5,12 +5,21 @@ export const resize = element => {
         element.width = scaledWidth;
         element.height = scaledHeight;
     }
-
-    // TODO: Trigger redraw for apps that don't update every frame.
 };
 
 export const resizeObserver = new ResizeObserver((observed, observer) => {
     for (const { target } of observed) {
         resize(target);
+
+        target.dispatchEvent(new Event('resize', { bubbles: true, composed: true }));
     }
 });
+
+export const observe = element => {
+    resizeObserver.observe(element);
+    resize(element);
+}
+
+export const unobserve = element => {
+    resizeObserver.unobserve(element);
+}

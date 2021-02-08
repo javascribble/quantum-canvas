@@ -4,16 +4,19 @@ import '/source/main.js';
 const canvas = document.querySelector('quantum-canvas');
 const source = document.querySelector('img');
 
-canvas.drawImage({
-    source,
-    sx: 0,
-    sy: 0,
-    sw: source.width,
-    sh: source.height,
-    dx: 100,
-    dy: 100,
-    dw: source.width,
-    dh: source.height
+canvas.addEventListener('resize', event => {
+    console.log(event);
+    canvas.drawImage({
+        source,
+        sx: 0,
+        sy: 0,
+        sw: source.width,
+        sh: source.height,
+        dx: 100,
+        dy: 100,
+        dw: source.width,
+        dh: source.height
+    });
 });
 
 document.body.style.visibility = 'visible';

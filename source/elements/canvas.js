@@ -1,18 +1,17 @@
-import { resize, resizeObserver } from '../utilities/element.js';
+import { observe, unobserve } from '../utilities/element.js';
 import { canvasOptions } from '../constants/canvas.js';
 import html from '../templates/canvas.js';
 
 export class Canvas extends Quantum {
-    context;
+    #canvas = this.shadowRoot.querySelector('canvas');
+    #context = this.#canvas.getContext('2d', canvasOptions);
 
-    constructor() {
-        super();
+    connectedCallback() {
+        observe(this.#canvas);
+    }
 
-        const canvas = this.shadowRoot.querySelector('canvas');
-        resizeObserver.observe(canvas);
-        resize(canvas);
-
-        this.context = canvas.getContext('2d', canvasOptions);
+    disconnectedCallback() {
+        unobserve(this.#canvas);
     }
 
     drawable(image) {
@@ -21,7 +20,7 @@ export class Canvas extends Quantum {
 
     drawImage(image) {
         const { source, sx, sy, sw, sh, dx, dy, dw, dh } = image;
-        this.context.drawImage(source, sx, sy, sw, sh, dx, dy, dw, dh);
+        this.#context.drawImage(source, sx, sy, sw, sh, dx, dy, dw, dh);
     }
 
     drawImageTree(root, branches) {

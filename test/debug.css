@@ -6,3 +6,8 @@ body {
 img {
     display: none;
 }
+
+quantum-canvas {
+    overflow: auto;
+    resize: both;
+}
