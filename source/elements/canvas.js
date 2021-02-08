@@ -31,7 +31,7 @@ export class Canvas extends Quantum {
 
         if (branches in root) {
             for (const branch of root[branches]) {
-                this.drawImageTree(branch);
+                this.drawImageTree(branch, branches);
             }
         }
     }
