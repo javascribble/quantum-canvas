@@ -6,6 +6,12 @@ export class Canvas extends Quantum {
     #canvas = this.shadowRoot.querySelector('canvas');
     #context = this.#canvas.getContext('2d', canvasOptions);
 
+    constructor() {
+        super();
+
+        this.addEventListener('resize', event => resize(this.#canvas));
+    }
+
     static get observedAttributes() { return ['scale']; }
 
     connectedCallback() {
