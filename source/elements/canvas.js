@@ -9,14 +9,10 @@ export class Canvas extends Quantum {
     constructor() {
         super();
 
-        this.addEventListener('resize', event => resize(this.#canvas, this.scale));
+        this.addEventListener('resize', event => resize(this.#canvas, this.scale || devicePixelRatio));
     }
 
     static get observedAttributes() { return ['scale']; }
-
-    get scale() {
-        return super.scale || devicePixelRatio;
-    }
 
     connectedCallback() {
         resizeObserver.observe(this);
