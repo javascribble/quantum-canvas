@@ -7,7 +7,9 @@ img {
     display: none;
 }
 
-quantum-canvas {
+div {
     overflow: auto;
     resize: both;
+    width: 500px;
+    height: 500px;
 }

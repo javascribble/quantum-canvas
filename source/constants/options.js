@@ -1,4 +1,4 @@
-export const canvasOptions = {
+export const defaultCanvasOptions = {
     alpha: false,
     depth: true,
     stencil: false,

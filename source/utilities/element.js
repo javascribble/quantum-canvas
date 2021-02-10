@@ -1,9 +1,9 @@
-export const resize = (element, scale = devicePixelRatio) => {
-    const scaledWidth = element.clientWidth * scale;
-    const scaledHeight = element.clientHeight * scale;
-    if (element.width !== scaledWidth || element.height !== scaledHeight) {
-        element.width = scaledWidth;
-        element.height = scaledHeight;
+export const resize = (canvas, scale) => {
+    const scaledWidth = canvas.clientWidth * scale;
+    const scaledHeight = canvas.clientHeight * scale;
+    if (canvas.width !== scaledWidth || canvas.height !== scaledHeight) {
+        canvas.width = scaledWidth;
+        canvas.height = scaledHeight;
     }
 };
 
