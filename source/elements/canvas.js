@@ -28,8 +28,8 @@ export class Canvas extends Quantum {
 
     #resize() {
         const canvas = this.#canvas;
-        const scaledWidth = this.width || (this.clientWidth * devicePixelRatio);
-        const scaledHeight = this.height || (this.clientHeight * devicePixelRatio);
+        const scaledWidth = this.clientWidth * devicePixelRatio;
+        const scaledHeight = this.clientHeight * devicePixelRatio;
         if (canvas.width !== scaledWidth || canvas.height !== scaledHeight) {
             canvas.width = scaledWidth;
             canvas.height = scaledHeight;
