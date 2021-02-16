@@ -1,11 +1,12 @@
 import '/node_modules/@javascribble/quantum/source/main.js';
+import '/source/plugins/drawing.js';
 import '/source/main.js';
 
 const canvas = document.querySelector('quantum-canvas');
 const source = document.querySelector('img');
 
 canvas.addEventListener('resize', event => {
-    canvas.resize();
+    canvas.setResolution();
     canvas.drawImage({
         source,
         sx: 0,

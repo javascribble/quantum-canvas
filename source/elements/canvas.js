@@ -3,20 +3,16 @@ import html from '../templates/canvas.js';
 
 export class Canvas extends Quantum {
     #canvas = this.shadowRoot.querySelector('canvas');
-    #context = this.#canvas.getContext('2d', defaultCanvasOptions);
 
-    drawImage(image) {
-        const { source, sx, sy, sw, sh, dx, dy, dw, dh } = image;
-        this.#context.drawImage(source, sx, sy, sw, sh, dx, dy, dw, dh);
-    }
+    context = this.#canvas.getContext('2d', defaultCanvasOptions);
 
-    resize(width, height) {
-        const canvas = this.#canvas;
-        const scaledWidth = width || canvas.clientWidth * devicePixelRatio;
-        const scaledHeight = height || canvas.clientHeight * devicePixelRatio;
-        if (canvas.width !== scaledWidth || canvas.height !== scaledHeight) {
-            canvas.width = scaledWidth;
-            canvas.height = scaledHeight;
+    setResolution(width = this.#canvas.clientWidth * devicePixelRatio, height = this.#canvas.clientHeight * devicePixelRatio) {
+        if (this.#canvas.width !== width) {
+            this.#canvas.width = width;
+        }
+
+        if (this.#canvas.height !== height) {
+            this.#canvas.height = height;
         }
     };
 }
