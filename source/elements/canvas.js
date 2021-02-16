@@ -1,19 +1,35 @@
 import { defaultCanvasOptions } from '../constants/options.js';
 import html from '../templates/canvas.js';
 
+const { resizeObserver } = quantum;
+
 export class Canvas extends Quantum {
     #canvas = this.shadowRoot.querySelector('canvas');
     #context = this.#canvas.getContext('2d', defaultCanvasOptions);
+
+    constructor() {
+        super();
+
+        this.addEventListener('resize', this.#resize.bind(this));
+    }
+
+    connectedCallback() {
+        resizeObserver.observe(this);
+    }
+
+    disconnectedCallback() {
+        resizeObserver.unobserve(this);
+    }
 
     drawImage(image) {
         const { source, sx, sy, sw, sh, dx, dy, dw, dh } = image;
         this.#context.drawImage(source, sx, sy, sw, sh, dx, dy, dw, dh);
     }
 
-    resize(width, height) {
+    #resize() {
         const canvas = this.#canvas;
-        const scaledWidth = width || (canvas.clientWidth * devicePixelRatio);
-        const scaledHeight = height || (canvas.clientHeight * devicePixelRatio);
+        const scaledWidth = this.width || (this.clientWidth * devicePixelRatio);
+        const scaledHeight = this.height || (this.clientHeight * devicePixelRatio);
         if (canvas.width !== scaledWidth || canvas.height !== scaledHeight) {
             canvas.width = scaledWidth;
             canvas.height = scaledHeight;

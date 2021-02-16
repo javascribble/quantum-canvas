@@ -4,8 +4,7 @@ import '/source/main.js';
 const canvas = document.querySelector('quantum-canvas');
 const source = document.querySelector('img');
 
-const resizeObserver = new ResizeObserver((observed, observer) => {
-    canvas.resize();
+canvas.addEventListener('resize', event => {
     canvas.drawImage({
         source,
         sx: 0,
@@ -18,7 +17,5 @@ const resizeObserver = new ResizeObserver((observed, observer) => {
         dh: source.height
     });
 });
-
-resizeObserver.observe(canvas);
 
 document.body.style.visibility = 'visible';
