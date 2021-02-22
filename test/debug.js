@@ -1,5 +1,5 @@
 import '/node_modules/@javascribble/quantum/source/main.js';
-import '/source/plugins/drawing.js';
+import '/source/extensions/drawing.js';
 import '/source/main.js';
 
 const canvas = document.querySelector('quantum-canvas');
