@@ -6,7 +6,7 @@ const { resizeObserver } = quantum;
 export class Canvas extends Quantum {
     #canvas = this.shadowRoot.querySelector('canvas');
 
-    context = this.#canvas.getContext('2d', defaultCanvasOptions);
+    context = this.getContext();
 
     connectedCallback() {
         resizeObserver.observe(this);
@@ -14,6 +14,10 @@ export class Canvas extends Quantum {
 
     disconnectedCallback() {
         resizeObserver.unobserve(this);
+    }
+
+    getContext(type, options) {
+        return this.#canvas.getContext(type || '2d', { ...defaultCanvasOptions, ...options });
     }
 
     setResolution(width = this.#canvas.clientWidth * devicePixelRatio, height = this.#canvas.clientHeight * devicePixelRatio) {
