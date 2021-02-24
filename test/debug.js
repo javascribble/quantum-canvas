@@ -20,7 +20,4 @@ canvas.addEventListener('resize', event => {
     });
 });
 
-const { resizeObserver } = quantum;
-resizeObserver.observe(canvas);
-
 document.body.style.visibility = 'visible';
