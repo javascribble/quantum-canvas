@@ -20,7 +20,7 @@ export class Canvas extends Quantum {
         return this.#canvas.getContext(type || '2d', { ...defaultCanvasOptions, ...options });
     }
 
-    setResolution(width = this.#canvas.clientWidth * devicePixelRatio, height = this.#canvas.clientHeight * devicePixelRatio) {
+    setResolution(width = this.#canvas.clientWidth, height = this.#canvas.clientHeight) {
         if (this.#canvas.width !== width) {
             this.#canvas.width = width;
         }
