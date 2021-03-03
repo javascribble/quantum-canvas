@@ -1,4 +1,4 @@
-import { defaultCanvasOptions } from '../constants/options.js';
+import { canvasOptions } from '../constants/options.js';
 import html from '../templates/canvas.js';
 
 const { resizeObserver } = quantum;
@@ -17,7 +17,7 @@ export class Canvas extends Quantum {
     }
 
     getContext(type, options) {
-        return this.#canvas.getContext(type || '2d', { ...defaultCanvasOptions, ...options });
+        return this.#canvas.getContext(type || '2d', { ...canvasOptions, ...options });
     }
 
     setResolution(width = this.#canvas.clientWidth, height = this.#canvas.clientHeight) {
