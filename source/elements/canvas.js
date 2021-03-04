@@ -8,6 +8,12 @@ export class Canvas extends Quantum {
 
     context = this.getContext();
 
+    constructor() {
+        super();
+
+        this.addEventListener('resize', this.#resize.bind(this));
+    }
+
     connectedCallback() {
         resizeObserver.observe(this);
     }
@@ -20,15 +26,15 @@ export class Canvas extends Quantum {
         return this.#canvas.getContext(type || '2d', { ...canvasOptions, ...options });
     }
 
-    setResolution(width = this.#canvas.clientWidth, height = this.#canvas.clientHeight) {
-        if (this.#canvas.width !== width) {
-            this.#canvas.width = width;
+    #resize() {
+        if (this.#canvas.width !== this.#canvas.clientWidth) {
+            this.#canvas.width = this.#canvas.clientWidth;
         }
 
-        if (this.#canvas.height !== height) {
-            this.#canvas.height = height;
+        if (this.#canvas.height !== this.#canvas.clientHeight) {
+            this.#canvas.height = this.#canvas.clientHeight;
         }
-    };
+    }
 }
 
 Canvas.define('quantum-canvas', html);

@@ -6,7 +6,6 @@ const canvas = document.querySelector('quantum-canvas');
 const source = document.querySelector('img');
 
 canvas.addEventListener('resize', event => {
-    canvas.setResolution();
     canvas.drawImage({
         source,
         sx: 0,
