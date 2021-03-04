@@ -10,6 +10,7 @@ export class Canvas extends Quantum {
     constructor() {
         super();
 
+        this.#resize();
         this.addEventListener('resize', this.#resize.bind(this));
     }
 
