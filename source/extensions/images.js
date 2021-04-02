@@ -1,12 +1,12 @@
 import { Canvas } from '../elements/canvas.js';
 
-Canvas.prototype.drawImage = function (image) {
-    const { source, sx, sy, sw, sh, dx, dy, dw, dh } = image;
-    this.context.drawImage(source, sx, sy, sw, sh, dx, dy, dw, dh);
+Canvas.prototype.drawImage = function (data) {
+    const { image, sx, sy, sw, sh, dx, dy, dw, dh } = data;
+    this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
 };
 
 Canvas.prototype.drawImageTree = function (root, branches) {
-    if (root.source) {
+    if (root.image) {
         this.drawImage(root);
     }
 
