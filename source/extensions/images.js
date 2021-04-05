@@ -8,9 +8,9 @@ Canvas.prototype.drawImage = function (data) {
 Canvas.prototype.drawImageTree = function (root, branches = 'children') {
     if (!root.hidden) {
         this.context.save();
-        this.context.translate(root.positionX, root.positionY);
-        this.context.rotate(root.rotationZ);
-        this.context.scale(root.scaleX, root.scaleY);
+        this.context.translate(root.position.x, root.position.y);
+        this.context.rotate(root.rotation);
+        this.context.scale(root.scale.x, root.scale.y);
 
         if (root.image) {
             this.drawImage(root);

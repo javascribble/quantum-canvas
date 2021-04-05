@@ -19,28 +19,24 @@ const sprite = {
 
 const clone1 = {
     ...sprite,
-    positionX: 200,
-    positionY: 200,
-    rotationZ: 0,
-    scaleX: 1,
-    scaleY: 1
+    position: { x: 200, y: 200 },
+    rotation: 0,
+    scale: { x: 1, y: 1 }
 };
 
 const clone2 = {
     ...sprite,
-    positionX: 100,
-    positionY: 100,
-    rotationZ: 0,
-    scaleX: 1,
-    scaleY: 1,
+    position: { x: 100, y: 100 },
+    rotation: 0,
+    scale: { x: 1, y: 1 }
 };
 
 clone1.children = [clone2];
 
 quantum.animate(time => {
     const radians = time.delta * 0.05 % 360 * Math.PI / 180;
-    clone1.rotationZ += radians;
-    clone2.rotationZ += radians;
+    clone1.rotation += radians;
+    clone2.rotation += radians;
     canvas.drawImageTree(clone1);
 }).start();
 
