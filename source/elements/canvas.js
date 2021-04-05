@@ -26,6 +26,10 @@ export class Canvas extends Quantum {
         return this.#canvas.getContext(type || '2d', { ...canvasOptions, ...options });
     }
 
+    clear(x = 0, y = 0, width = this.#canvas.width, height = this.#canvas.height) {
+        this.context.clearRect(x, y, width, height);
+    }
+
     #resize() {
         this.#canvas.width = this.#canvas.clientWidth;
         this.#canvas.height = this.#canvas.clientHeight;

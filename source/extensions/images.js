@@ -5,14 +5,23 @@ Canvas.prototype.drawImage = function (data) {
     this.context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
 };
 
-Canvas.prototype.drawImageTree = function (root, branches) {
-    if (root.image) {
-        this.drawImage(root);
-    }
+Canvas.prototype.drawImageTree = function (root, branches = 'children') {
+    if (!root.hidden) {
+        this.context.save();
+        this.context.translate(root.positionX, root.positionY);
+        this.context.rotate(root.rotationZ);
+        this.context.scale(root.scaleX, root.scaleY);
 
-    if (branches in root) {
-        for (const branch of root[branches]) {
-            this.drawImageTree(branch, branches);
+        if (root.image) {
+            this.drawImage(root);
         }
+
+        if (branches in root) {
+            for (const branch of root[branches]) {
+                this.drawImageTree(branch, branches);
+            }
+        }
+
+        this.context.restore();
     }
 };
