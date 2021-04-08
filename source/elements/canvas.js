@@ -11,7 +11,7 @@ export class Canvas extends Quantum {
         super();
 
         this.resize();
-        this.addEventListener('resize', this.#resize.bind(this));
+        this.addEventListener('resize', this.resize.bind(this));
     }
 
     connectedCallback() {
