@@ -10,7 +10,7 @@ export class Canvas extends Quantum {
     constructor() {
         super();
 
-        this.#resize();
+        this.resize();
         this.addEventListener('resize', this.#resize.bind(this));
     }
 
@@ -30,7 +30,7 @@ export class Canvas extends Quantum {
         this.context.clearRect(x, y, width, height);
     }
 
-    #resize() {
+    resize() {
         this.#canvas.width = this.#canvas.clientWidth;
         this.#canvas.height = this.#canvas.clientHeight;
     }
