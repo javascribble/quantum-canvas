@@ -15,8 +15,6 @@ const sprite = new Sprite(image);
 const animation = quantum.animate(({ delta, elapsed }) => {
     const fps = Math.trunc(1000 / delta);
 
-    canvas.context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-
     for (let i = 0; i < 10; i++) {
         const node = new Node();
         node.drawables.push(sprite);
