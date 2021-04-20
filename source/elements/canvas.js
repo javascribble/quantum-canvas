@@ -22,8 +22,8 @@ export class Canvas extends Quantum {
         resizeObserver.unobserve(this);
     }
 
-    getContext() {
-        return this.#canvas.getContext('2d', canvasOptions);
+    getContext(type = '2d', options = canvasOptions) {
+        return this.#canvas.getContext(type, options);
     }
 
     resize() {
