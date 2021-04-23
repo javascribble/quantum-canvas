@@ -12,7 +12,7 @@ const { Node, Sprite } = canvas;
 let count = 0;
 const root = new Node();
 const sprite = new Sprite(image);
-const animation = quantum.animate(({ delta, elapsed }) => {
+const animation = quantum.animate(({ delta }) => {
     const fps = Math.trunc(1000 / delta);
 
     for (let i = 0; i < 10; i++) {
@@ -29,6 +29,7 @@ const animation = quantum.animate(({ delta, elapsed }) => {
         translation.y = (translation.y + Math.random() * 10) % canvas.clientHeight;
     }
 
+    canvas.context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
     root.draw(canvas.context);
 
     display.innerHTML = `FPS: ${fps} Count: ${count}`;
