@@ -17,7 +17,7 @@ const animation = quantum.animate(({ delta }) => {
 
     for (let i = 0; i < 10; i++) {
         const node = new Node();
-        node.drawables.push(sprite);
+        node.children.push(sprite);
         root.children.push(node);
         count++;
     }
