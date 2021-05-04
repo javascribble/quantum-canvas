@@ -15,7 +15,7 @@ const sprite = new Sprite(image);
 const animation = quantum.animate(({ delta }) => {
     const fps = Math.trunc(1000 / delta);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 50; i++) {
         const node = new Node();
         node.children.push(sprite);
         root.children.push(node);
@@ -34,7 +34,7 @@ const animation = quantum.animate(({ delta }) => {
 
     display.innerHTML = `FPS: ${fps} Count: ${count}`;
 
-    if (fps < 30) {
+    if (fps > 0 && fps < 30) {
         animation.stop();
     }
 });

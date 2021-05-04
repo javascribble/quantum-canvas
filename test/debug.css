@@ -10,8 +10,6 @@ img {
 #container {
     overflow: auto;
     resize: both;
-    width: 300px;
-    height: 300px;
 }
 
 #display {
