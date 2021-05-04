@@ -6,6 +6,7 @@ export class Canvas extends Quantum {
     #canvas = this.shadowRoot.querySelector('canvas');
 
     context = this.getContext();
+    scale = devicePixelRatio;
 
     constructor() {
         super();
@@ -27,8 +28,8 @@ export class Canvas extends Quantum {
     }
 
     resize() {
-        this.#canvas.width = this.#canvas.clientWidth * devicePixelRatio;
-        this.#canvas.height = this.#canvas.clientHeight * devicePixelRatio;
+        this.#canvas.width = this.#canvas.clientWidth * this.scale;
+        this.#canvas.height = this.#canvas.clientHeight * this.scale;
         Object.assign(this.context, contextOptions);
     }
 }
