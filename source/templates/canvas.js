@@ -6,7 +6,6 @@ export default `
     }
 
     canvas {
-        image-rendering: crisp-edges;
         width: 100%;
         height: 100%;
     }

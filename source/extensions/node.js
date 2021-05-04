@@ -2,21 +2,16 @@ import { Canvas } from '../elements/canvas.js';
 
 Canvas.prototype.Node = class Node {
     children = [];
-
     transform = {
         translation: { x: 0, y: 0 },
-        rotation: { z: 0 },
         scale: { x: 1, y: 1 }
     };
 
     draw(context) {
-        const { translation, rotation, scale } = this.transform;
-
         context.save();
 
-        const sin = Math.sin(rotation.z);
-        const cos = Math.cos(rotation.z);
-        context.transform(cos * scale.x, sin * scale.x, -sin * scale.y, cos * scale.y, translation.x, translation.y);
+        const { translation, scale } = this.transform;
+        context.transform(scale.x, 0, 0, scale.y, translation.x, translation.y);
 
         for (const child of this.children) {
             child.draw(context);
