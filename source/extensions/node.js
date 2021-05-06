@@ -1,16 +1,13 @@
 import { Canvas } from '../elements/canvas.js';
+import { Transform } from '../graphics/transform';
 
-Canvas.prototype.Node = class Node {
+Canvas.prototype.Node = class Node extends Transform {
     children = [];
-    transform = {
-        translation: { x: 0, y: 0 },
-        scale: { x: 1, y: 1 }
-    };
 
     draw(context) {
         context.save();
 
-        const { translation, scale } = this.transform;
+        const { translation, scale } = this;
         context.transform(scale.x, 0, 0, scale.y, translation.x, translation.y);
 
         for (const child of this.children) {

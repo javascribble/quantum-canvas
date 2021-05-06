@@ -23,8 +23,7 @@ const animation = quantum.animate(({ delta }) => {
     }
 
     const { clientWidth, clientHeight } = canvas;
-    for (const { transform } of root.children) {
-        const { translation } = transform;
+    for (const { translation } of root.children) {
         translation.x = Math.random() * clientWidth * devicePixelRatio;
         translation.y = Math.random() * clientHeight * devicePixelRatio;
     }
