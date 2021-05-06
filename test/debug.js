@@ -1,34 +1,32 @@
 import '/node_modules/@javascribble/quantum/source/main.js';
-import '/source/extensions/node.js';
-import '/source/extensions/sprite.js';
+import '/source/extensions/draw.js';
 import '/source/main.js';
 
 const display = document.querySelector('#display');
 const canvas = document.querySelector('quantum-canvas');
 const image = document.querySelector('img');
 
-const { Node, Sprite, context } = canvas;
+const { width, height } = image;
 
 let count = 0;
-const root = new Node();
-const sprite = new Sprite(image);
+const root = { children: [] };
+const sprite = { image, sx: 0, sy: 0, sw: width, sh: height, dx: -width / 2, dy: -height / 2, dw: width, dh: height };
 const animation = quantum.animate(({ delta }) => {
     const fps = Math.trunc(1000 / delta);
 
     for (let i = 0; i < 100; i++) {
-        const node = new Node();
-        node.children.push(sprite);
-        root.children.push(node);
+        root.children.push({ sprite, transform: { translation: { x: 0, y: 0 } } });
         count++;
     }
 
     const { clientWidth, clientHeight } = canvas;
-    for (const { translation } of root.children) {
+    for (const { transform } of root.children) {
+        const { translation } = transform;
         translation.x = Math.random() * clientWidth * devicePixelRatio;
         translation.y = Math.random() * clientHeight * devicePixelRatio;
     }
 
-    root.draw(context);
+    canvas.draw(root);
 
     display.innerHTML = `FPS: ${fps} Count: ${count}`;
 
