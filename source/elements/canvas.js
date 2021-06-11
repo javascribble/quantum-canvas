@@ -1,4 +1,5 @@
 import { canvasOptions, contextOptions } from '../constants/options.js';
+import '../decorators/loaders.js';
 
 const { resizeObserver } = quantum;
 
