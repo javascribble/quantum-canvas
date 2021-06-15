@@ -1,11 +1,11 @@
 const { loaders } = quantum;
 
-const loadImage = (url, options) => new Promise((resolve, reject) => {
+const loadImage = async url => {
     const image = new Image();
-    image.onload = () => resolve(image);
-    image.onerror = () => reject(image);
     image.src = url;
-});
+    await image.decode();
+    return Promise.resolve(image);
+};
 
 loaders.png = loadImage;
 loaders.jpg = loadImage;
