@@ -12,7 +12,6 @@ export class Canvas extends Quantum {
     constructor() {
         super();
 
-        this.resize();
         this.addEventListener('resize', this.resize.bind(this));
     }
 
@@ -28,7 +27,7 @@ export class Canvas extends Quantum {
         return this.#canvas.getContext(type, options);
     }
 
-    resize() {
+    resize(event) {
         this.#canvas.width = this.#canvas.clientWidth * this.scale;
         this.#canvas.height = this.#canvas.clientHeight * this.scale;
     }

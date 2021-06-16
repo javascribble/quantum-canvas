@@ -17,7 +17,7 @@ quantum.load('/test/resources/image.png').then(image => {
         const fps = Math.trunc(1000 / delta);
 
         for (let i = 0; i < 100; i++) {
-            root.children.push({ sprite, transform: { translation: { x: 0, y: 0 } } });
+            root.children.push({ sprite, transform: { translation: { x: 0, y: 0 }, scale: { x: 3, y: 3 } } });
             count++;
         }
 
