@@ -1,4 +1,4 @@
-import { canvasOptions, contextOptions } from '../constants/options.js';
+import { canvasOptions } from '../constants/options.js';
 import '../decorators/loaders.js';
 
 const { resizeObserver } = quantum;
@@ -31,6 +31,5 @@ export class Canvas extends Quantum {
     resize() {
         this.#canvas.width = this.#canvas.clientWidth * this.scale;
         this.#canvas.height = this.#canvas.clientHeight * this.scale;
-        Object.assign(this.context, contextOptions);
     }
 }

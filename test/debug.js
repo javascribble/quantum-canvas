@@ -5,6 +5,7 @@ import '/source/main.js';
 
 const display = document.querySelector('#display');
 const canvas = document.querySelector('quantum-canvas');
+canvas.addEventListener('resize', () => canvas.context.imageSmoothingEnabled = false);
 
 quantum.load('/test/resources/image.png').then(image => {
     const { width, height } = image;
