@@ -1,6 +1,6 @@
 import '/node_modules/@javascribble/quantum/source/main.js';
-import '/source/decorators/loaders.js';
 import '/source/extensions/draw.js';
+import '/source/plugins/loaders.js';
 import '/source/main.js';
 
 const display = document.querySelector('#display');
