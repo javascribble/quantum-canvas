@@ -9,5 +9,3 @@ const loadImage = async url => {
 
 loaders.png = loadImage;
 loaders.jpg = loadImage;
-
-quantum.loadImage = loadImage;

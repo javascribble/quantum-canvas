@@ -1,7 +1,7 @@
-import '/node_modules/@javascribble/quantum/source/main.js';
-import '/source/main.js';
-import '/source/extensions/draw.js';
-import '/source/plugins/loaders.js';
+import '/node_modules/@javascribble/quantum/build/main-window.js';
+import '/bundles/main.js';
+import '/bundles/main-extensions.js';
+import '/bundles/main-plugins.js';
 
 const display = document.querySelector('#display');
 const canvas = document.querySelector('quantum-canvas');

@@ -1,4 +1,5 @@
 import { canvasOptions } from '../constants/options.js';
+import canvas from '../templates/canvas.js';
 
 const { resizeObserver } = quantum;
 
@@ -31,3 +32,5 @@ export class Canvas extends Quantum {
         this.#canvas.height = this.#canvas.clientHeight * this.scale;
     }
 }
+
+Canvas.define('quantum-canvas', canvas);
