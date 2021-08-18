@@ -1,1 +1,1 @@
-export * from '../source/plugins/loaders.js';
+import '../source/plugins/loaders.js';

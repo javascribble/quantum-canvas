@@ -1,7 +1,9 @@
 import { drawPath } from '../graphics/path.js';
 import { drawSprite } from '../graphics/sprite.js';
 
-Quantum.Canvas.prototype.draw = function (node) {
+const { Canvas } = Quantum;
+
+Canvas.prototype.draw = function (node) {
     const { transform, path, sprite, children } = node;
 
     this.context.save();

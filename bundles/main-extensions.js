@@ -1,1 +1,1 @@
-export * from '../source/extensions/draw.js';
+import '../source/extensions/draw.js';
