@@ -6,13 +6,18 @@ const { resizeObserver } = quantum;
 export class Canvas extends Quantum {
     #canvas = this.shadowRoot.querySelector('canvas');
 
-    context = this.getContext();
-    scale = devicePixelRatio;
-
     constructor() {
         super();
 
-        this.addEventListener('resize', _ => this.resize(this.#canvas.clientWidth * this.scale, this.#canvas.clientHeight * this.scale));
+        this.addEventListener('resize', event => this.resize(this.size, event));
+    }
+
+    context = this.getContext();
+    scale = devicePixelRatio;
+
+    get size() {
+        const { clientWidth, clientHeight } = this.#canvas;
+        return { width: clientWidth * this.scale, height: clientHeight * this.scale };
     }
 
     connectedCallback() {
@@ -27,9 +32,9 @@ export class Canvas extends Quantum {
         return this.#canvas.getContext(type, options);
     }
 
-    resize(width, height) {
-        this.#canvas.width = width;
-        this.#canvas.height = height;
+    resize(size) {
+        this.#canvas.width = size.width;
+        this.#canvas.height = size.height;
     }
 }
 
