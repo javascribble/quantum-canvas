@@ -1,1 +1,1 @@
-import '../source/extensions/draw.js';
+import '../source/extensions/canvas.js';
