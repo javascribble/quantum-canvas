@@ -7,7 +7,7 @@ const display = document.querySelector('#display');
 const canvas = document.querySelector('quantum-canvas');
 canvas.addEventListener('resize', () => canvas.context.imageSmoothingEnabled = false);
 
-const image = await quantum.load('/test/resources/image.png');
+const image = await quantum.load('./resources/image.png');
 const { width, height } = image;
 
 let count = 0;
