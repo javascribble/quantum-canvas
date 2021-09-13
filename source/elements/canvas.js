@@ -22,6 +22,7 @@ export class Canvas extends Quantum {
 
     resize() {
         Object.assign(this.#canvas, this.size);
+        this.context.imageSmoothingEnabled = false;
     }
 
     render(state) {

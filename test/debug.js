@@ -3,7 +3,6 @@ import '/bundles/main.js';
 
 const display = document.querySelector('#display');
 const canvas = document.querySelector('quantum-canvas');
-canvas.addEventListener('resize', () => canvas.context.imageSmoothingEnabled = false);
 
 const image = await quantum.load('./resources/image.png');
 const { width, height } = image;
@@ -15,7 +14,7 @@ const animation = quantum.animate(({ delta }) => {
     const fps = Math.trunc(1000 / delta);
 
     for (let i = 0; i < 100; i++) {
-        root.children.push({ sprite, transform: { translation: { x: 0, y: 0 }, scale: { x: 3, y: 3 } } });
+        root.children.push({ sprite, transform: { translation: { x: 0, y: 0 }, scale: { x: 10, y: 10 } } });
         count++;
     }
 
