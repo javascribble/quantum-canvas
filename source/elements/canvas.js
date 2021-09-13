@@ -9,11 +9,6 @@ export class Canvas extends Quantum {
     context = this.#canvas.getContext('2d', canvasOptions);
     scale = devicePixelRatio;
 
-    get size() {
-        const { clientWidth, clientHeight } = this.#canvas;
-        return { width: clientWidth * this.scale, height: clientHeight * this.scale };
-    }
-
     constructor() {
         super();
 
@@ -21,7 +16,9 @@ export class Canvas extends Quantum {
     }
 
     resize() {
-        Object.assign(this.#canvas, this.size);
+        const { clientWidth, clientHeight } = this.#canvas;
+        this.#canvas.width = clientWidth * this.scale;
+        this.#canvas.height = clientHeight * this.scale;
         this.context.imageSmoothingEnabled = false;
     }
 
