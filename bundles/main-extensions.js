@@ -1,1 +1,0 @@
-import '../source/extensions/canvas.js';

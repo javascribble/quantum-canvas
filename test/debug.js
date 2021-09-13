@@ -1,7 +1,5 @@
-import '/node_modules/@javascribble/quantum/build/main-window.js';
+import '/node_modules/@javascribble/quantum/bundles/main-window.js';
 import '/bundles/main.js';
-import '/bundles/main-extensions.js';
-import '/bundles/main-plugins.js';
 
 const display = document.querySelector('#display');
 const canvas = document.querySelector('quantum-canvas');
@@ -28,7 +26,7 @@ const animation = quantum.animate(({ delta }) => {
         translation.y = Math.random() * clientHeight * devicePixelRatio;
     }
 
-    canvas.draw(root);
+    canvas.render(root);
 
     display.innerHTML = `FPS: ${fps} Count: ${count}`;
 
