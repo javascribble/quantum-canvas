@@ -1,7 +1,8 @@
 import { drawPath } from '../graphics/path.js';
 import { drawSprite } from '../graphics/sprite.js';
 
-export const draw = (node, context) => {
+export function render(node) {
+    const { context } = this;
     const { transform, path, sprite, children } = node;
 
     context.save();
@@ -29,9 +30,9 @@ export const draw = (node, context) => {
 
     if (children) {
         for (const child of children) {
-            draw(child, context);
+            this.render(child, context);
         }
     }
 
     context.restore();
-};
+}

@@ -1,12 +1,13 @@
-import { canvasOptions } from '../constants/options.js';
-import { draw } from '../renderer/draw.js';
+import { resize } from '../context/canvas.js';
+import { initialize } from '../context/initialize.js';
+import { render } from '../renderer/render.js';
 import canvas from '../templates/canvas.js';
 
 const { resizeObserver } = quantum;
 
 export class Canvas extends Quantum {
     #canvas = this.shadowRoot.querySelector('canvas');
-    context = this.#canvas.getContext('2d', canvasOptions);
+    context = initialize(this.#canvas);
     scale = devicePixelRatio;
 
     constructor() {
@@ -15,16 +16,8 @@ export class Canvas extends Quantum {
         this.observers.add(resizeObserver);
     }
 
-    resize() {
-        const { clientWidth, clientHeight } = this.#canvas;
-        this.#canvas.width = clientWidth * this.scale;
-        this.#canvas.height = clientHeight * this.scale;
-        this.context.imageSmoothingEnabled = false;
-    }
-
-    render(state) {
-        draw(state, this.context);
-    }
+    resize = resize;
+    render = render;
 }
 
 Canvas.define('quantum-canvas', canvas);
