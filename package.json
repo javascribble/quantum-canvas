@@ -4,7 +4,7 @@
     "version": "1.5.20",
     "license": "MIT",
     "dependencies": {
-        "@javascribble/quantum": "^1.5.10"
+        "@javascribble/quantum": "^1.5.15"
     },
     "devDependencies": {
         "live-server": "*"
